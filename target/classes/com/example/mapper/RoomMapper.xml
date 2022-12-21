@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.RoomMapper">
+
+    <!--添加房间-->
+    <insert id="addRoom">
+        insert into room (number,price,description) values (#{room.number},#{room.price},#{room.description});
+    </insert>
+
+    <!--查询所有房间-->
+    <select id="selectAll" resultType="com.example.pojo.Room">
+        select * from room;
+    </select>
+    <!--根据number查房间-->
+    <select id="selectByNumber" resultType="com.example.pojo.Room">
+        select * from room where number = #{number};
+    </select>
+    <!--根据id查房间-->
+    <select id="selectById" resultType="com.example.pojo.Room">
+        select * from room where id = #{id};
+    </select>
+
+    <!--根据非法id查合法房间-->
+    <select id="selectByIllegalIds" resultType="com.example.pojo.Room">
+        select * from room where id not in
+        <foreach collection="roomsId" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+
+    <!--预定房间-->
+    <update id="orderRoom">
+        update room set flag =0,useData=#{room.useData} where id = #{id};
+    </update>
+
+
+
+</mapper>

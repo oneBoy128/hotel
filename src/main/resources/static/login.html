@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clover</title>
+    <style>
+        * {
+    /* 去除浏览器默认内外边距 */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #c2bbbb, #fff)
+}
+
+
+
+/* 表单盒子 */
+.form-box {
+    position: absolute;
+    width: 400px;
+    height: 500px;
+    border-radius: 5px;
+    right: 20%;
+    backdrop-filter: blur(100px);
+    box-shadow: 2px 1px 19px rgba(0, 0, 0, .1);
+    z-index: 99;
+}
+
+.clover:nth-child(1) {
+    transform: translate(52px, 52px);
+}
+
+.clover:nth-child(2) {
+    transform: translate(52px, 52px) rotate(90deg);
+}
+
+.clover:nth-child(3) {
+    transform: translateX(52px) rotate(-90deg);
+}
+
+.clover:nth-child(4) {
+    transform: translateX(52px) rotate(180deg);
+}
+
+.register-box {
+    display: none;
+}
+
+.title {
+    margin-top: 50px;
+    text-align: center;
+    user-select: none;
+    color: #fff;
+    text-shadow: 4px 4px 3px rgba(0, 0, 0, .1);
+}
+
+/* 图片盒子 */
+.img-box {
+    width: 100px;
+    height: 100px;
+    margin: 10px auto;
+    user-select: none;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 4px 4px 3px rgba(0, 0, 0, .1);
+}
+
+.img-box img {
+    width: 100%;
+}
+
+.input-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    outline: none;
+    width: 60%;
+    height: 40px;
+    margin-bottom: 20px;
+    text-indent: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 20px;
+    border: 1px solid #fff;
+
+
+}
+
+input::placeholder {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+input:focus::placeholder {
+    opacity: 0;
+}
+
+.btn-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    width: 100px;
+    height: 30px;
+    margin-bottom: 10px;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 4px;
+    background-color: #c08f8a;
+
+}
+
+button:hover {
+    cursor: pointer;
+}
+    </style>
+</head>
+<body>
+    <div class="form-box">
+        <div class="login-box">
+            <h1 class="title">
+                Sign in
+            </h1>
+            <div class="img-box">
+                <img src="./the-best-project/public/imgs/tx1.png" alt="">
+            </div>
+            <div class="input-box">
+                <input type="text" placeholder="用户名">
+                <input type="password" placeholder="密码">
+            </div>
+            <div class="btn-box">
+                <button>登录</button>
+                <button onclick="mySlide()">注册</button>
+            </div>
+        </div>
+        <div class="register-box">
+            <h1 class="title">
+                Sign up
+            </h1>
+            <div class="img-box">
+                <img src="./the-best-project/public/imgs/tx1.png" alt="">
+            </div>
+            <div class="input-box">
+                <input type="text" placeholder="用户名">
+                <input type="password" placeholder="密码">
+                <input type="password" placeholder="确认密码">
+            </div>
+            <div class="btn-box">
+                <button>注册</button>
+                <button onclick="mySlide()">登录</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let flag=true
+    const mySlide = ()=>{
+        const register_box=document.querySelector('.register-box')
+        const login_box=document.querySelector('.login-box')
+
+        if(flag){
+            register_box.style.display="block"
+            login_box.style.display="none"
+        }else {
+            register_box.style.display="none"
+            login_box.style.display="block"
+        }
+        flag=!flag
+    }
+</script>
+</html>

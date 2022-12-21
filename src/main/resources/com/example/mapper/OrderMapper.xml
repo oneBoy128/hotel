@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.OrderMapper">
+
+    <!--查询用户所有订单-->
+    <select id="selectAll" resultType="com.example.pojo.Order">
+        select * from `order` where userId = #{userId};
+    </select>
+
+    <!--根据id查询订单-->
+    <select id="selectById" resultType="com.example.pojo.Order">
+        select * from  `order` where id = #{id};
+    </select>
+
+    <!--添加订单-->
+    <insert id="addOrder">
+        insert into `order` (number, price,description, userId,startTime,endTime) values (#{order.number},#{order.price},#{order.description},#{order.userId},#{order.startTime},#{order.endTime})
+    </insert>
+
+    <!--取消订单-->
+    <update id="cancelOrder">
+        update `order` set `condition` = '已取消' where id = #{id};
+    </update>
+
+    <!--删除订单-->
+    <delete id="deleteOrder">
+        delete  from  `order` where  id = #{id};
+    </delete>
+
+
+</mapper>

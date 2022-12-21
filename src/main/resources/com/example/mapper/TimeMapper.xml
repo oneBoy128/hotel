@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.TimeMapper">
+
+
+    <!--添加日期-->
+    <insert id="add">
+        insert into time (startTime, endTime,roomId, userId, number) values (#{time.startTime},#{time.endTime},#{time.roomId},#{time.userId},#{time.number});
+    </insert>
+
+    <!--查询全部-->
+    <select id="selectAll" resultType="com.example.pojo.Time">
+        select * from time;
+    </select>
+
+    <!--查询非法startTime查询rooId-->
+    <select id="selectRooms" resultType="java.lang.Integer">
+        select roomId from time where startTime in
+        <foreach collection="dates" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <!--删除time表-->
+    <delete id="deleteTime">
+        delete from time where userId=#{userId} and number = #{number} and startTime = #{startTime};
+    </delete>
+
+</mapper>
